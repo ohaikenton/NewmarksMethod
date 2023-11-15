@@ -53,7 +53,6 @@ function [time, displacements, velocities, accelerations] = newmarks_method(M, C
     end
 end
 
-% Example usage
 Phi = [0.3338, -0.8953, 1.1726, 1.0776, -0.6405;
        0.6405, -1.1726, 0.3338, -0.8953, 1.0776;
        0.8953, -0.6405, -1.0776, -0.3338, -1.1726;
@@ -67,4 +66,14 @@ K = [31.3, 0, 0, 0, 0;
      0, 0, 0, 662, 0;
      0, 0, 0, 1092.6, 0;
      0, 0, 0, 0, 1421.3];
-C = [0.5592, 0, 0, 0, I apologize, but it seems like the code got cut off. Could you please provide the remaining part of the `C` matrix, as well as any other missing information or variables required for the code?
+C = [0.5592, 0, 0, 0, 0;
+     0, 1.6322, 0, 0, 0;
+     0, 0, 2.573, 0, 0;
+     0, 0, 0, 3.3054, 0;
+     0, 0, 0, 0, 3.77];
+M = eye(5);
+p = zeros(5, 1);
+u0 = zeros(5, 1);
+v0 = zeros(5, 1);
+timesteps = 22;
+u_g0 = 193;
