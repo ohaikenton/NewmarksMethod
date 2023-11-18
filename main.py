@@ -21,12 +21,14 @@ def newmarks_method(M, C, K, Phi, u0, v0, dt, gamma, beta, timesteps, u_g0):
     displacements = np.zeros((timesteps, num_dofs))
     velocities = np.zeros((timesteps, num_dofs))
     accelerations = np.zeros((timesteps, num_dofs))
+    u_time = np.zeros((timesteps, num_dofs))
 
     # Store initial values
     time[0] = 0
     displacements[0] = q.flatten()
     velocities[0] = q_dot.flatten()
     accelerations[0] = q_double_dot.flatten()
+    u_time[0] = np.dot(Phi, q).flatten()
 
     # Step 2.0: Calculations for each time step
     for i in range(1, timesteps):
@@ -69,8 +71,9 @@ def newmarks_method(M, C, K, Phi, u0, v0, dt, gamma, beta, timesteps, u_g0):
         displacements[i] = q.flatten()
         velocities[i] = q_dot.flatten()
         accelerations[i] = q_double_dot.flatten()
+        u_time[i] = u.flatten()
 
-    return time, displacements, velocities, accelerations
+    return time, displacements, velocities, accelerations, u_time
 
 
 # Example usage
@@ -115,8 +118,9 @@ u_g0 = 193
 # print(f"dot product:\n{np.dot(C, v0)}")
 
 
-time, displacements, velocities, accelerations = newmarks_method(M, C, K, Phi, u0, v0, dt, gamma, beta, timesteps, u_g0)
+time, displacements, velocities, accelerations, u = newmarks_method(M, C, K, Phi, u0, v0, dt, gamma, beta, timesteps, u_g0)
 print(time)
 print(displacements)
 print(velocities)
 print(accelerations)
+print(u)
