@@ -1,5 +1,5 @@
 import numpy as np
-
+import matplotlib.pyplot as plt
 
 def newmarks_method(M, C, K, Phi, u0, v0, dt, gamma, beta, timesteps, u_g0):
     # Step 1.0: Initial calculations
@@ -95,7 +95,7 @@ Phi = np.matrix([[0.3338, -0.8953, 1.1726, 1.0776, -0.6405],
                  [1.1726, 1.0776, 0.8953, -0.6405, -0.3338]])
 gamma = 0.5
 beta = 1/6
-dt = 0.1
+dt = 0.01
 K = np.matrix([[31.3,0,0,0,0],
               [0,266.4,0,0,0],
               [0,0,0,662,0],
@@ -110,7 +110,7 @@ M = np.identity(5)
 p = np.zeros([5, 1])
 u0 = np.zeros((5, 1))
 v0 = np.zeros([5, 1])
-timesteps = 22
+timesteps = 1002
 u_g0 = 193
 
 # print(f"C:\n{C}")
@@ -119,8 +119,18 @@ u_g0 = 193
 
 
 time, displacements, velocities, accelerations, u = newmarks_method(M, C, K, Phi, u0, v0, dt, gamma, beta, timesteps, u_g0)
-print(time)
-print(displacements)
-print(velocities)
-print(accelerations)
-print(u)
+# print(time)
+# print(displacements)
+# print(velocities)
+# print(accelerations)
+# print(u)
+
+u1 = u[:, 0]
+
+plt.figure(figsize=[10., 5.])
+plt.plot(time, u1)
+plt.xlabel('Time (s)')
+plt.ylabel('u1')
+plt.title('u1 over Time')
+plt.grid(True)
+plt.show()
